@@ -6,6 +6,8 @@
 - git submodule update
 - yarn
 - Modify `example.sol` for developing new idea
+- `truffle compile`
+- `truffle test`
 
 ### Unit tests:
 - In `1_example_test.js`, the deployment of zap contracts for local development is already done in `before`
