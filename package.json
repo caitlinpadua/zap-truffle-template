@@ -1,0 +1,21 @@
+{
+  "name": "zap-truffle-template",
+  "version": "1.0.0",
+  "description": "Template for developing contracts to interact with Zap contracts",
+  "main": "truffle migrate",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "yarn test"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^2.0.2",
+    "truffle": "^4.1.14",
+    "truffle-hdwallet-provider": "0.0.6"
+  },
+  "author": "Propulsor",
+  "license": "ISC"
+}
