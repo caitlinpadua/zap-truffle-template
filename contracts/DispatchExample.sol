@@ -25,7 +25,7 @@ contract ExampleOracle  {
         bytes32 title = "TestOracle";
 
         registry.initiateProvider(12345, title);
-        registry.initiateProviderCurve(spec1, curve, address(0));
+        registry.initiateProviderCurve(spec1, curve1, address(0));
     }
 
     // middleware function for handling queries
@@ -34,7 +34,7 @@ contract ExampleOracle  {
         endpoint1(id);
 	}
 	function endpoint1(uint256 id){
-		// dispatch.respond1(id, "String1");
+		dispatch.respond1(id, "Onchain Answer");
 		// dispatch.respond2(id, "String1","String2");
 		// dispatch.respond3(id, "String1","String2","String3");
 		// dispatch.respond4(id, "String1","String2","String3","String4");
@@ -53,7 +53,7 @@ contract ExampleUser{
     
 
     address dispatchAddress;
-    
+    event Results(string response1, string response2, string response3, string response4);
 
 	constructor(address _zapCoord) public {
 		
@@ -73,18 +73,18 @@ contract ExampleUser{
     }
 
     function callback(uint256 id, string response1) external {
-    	
+    	emit Results(response1, "NOTAVAILABLE", "NOTAVAILABLE", "NOTAVAILABLE");
     }
     
     function callback(uint256 id, string response1, string response2) external {
-        
+        emit Results(response1, response2, "NOTAVAILABLE", "NOTAVAILABLE");
     }
     function callback(uint256 id, string response1, string response2, string response3) external {
-    	
+    	emit Results(response1, response2, response3, "NOTAVAILABLE");
     }
     
     function callback(uint256 id, string response1, string response2, string response3, string response4) external {
-        
+        emit Results(response1, response2, response3, response4);
     }
 
     function testQuery(address oracleAddr, string query, bytes32 specifier, bytes32[] params) external returns (uint256) {
