@@ -78,9 +78,6 @@ contract("Template",async (accounts)=>{
         var useAddr = exUser.address; 
         var oracleAddr = exOracle.address;
 
-        const dispatchEvents = dispatch.allEvents({ fromBlock: 0, toBlock: 'latest' });
-        dispatchEvents.watch((err, res) => { });
-        
         const userEvents = exUser.allEvents({ fromBlock: 0, toBlock: 'latest' });
         userEvents.watch((err, res) => { }); 
 
@@ -98,7 +95,7 @@ contract("Template",async (accounts)=>{
                 await expect(result).to.be.equal("Onchain Answer")
                 }
         }
-        dispatchEvents.stopWatching();
+        
         userEvents.stopWatching();
 
 
