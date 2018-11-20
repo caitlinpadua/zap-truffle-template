@@ -1,0 +1,196 @@
+{
+  "contractName": "Example",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820b7399b84bd38d4a5f441b0e20c66db4d1d405b294152f0de4171d09c9a3412be0029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820b7399b84bd38d4a5f441b0e20c66db4d1d405b294152f0de4171d09c9a3412be0029",
+  "sourceMap": "128:51:1:-;;;151:26;8:9:-1;5:2;;;30:1;27;20:12;5:2;151:26:1;128:51;;;;;;",
+  "deployedSourceMap": "128:51:1:-;;;;;",
+  "source": "pragma solidity ^0.4.0;\n//Example of requiring zap contracts Registry\nimport \"./zap/contracts/platform/registry/Registry.sol\";\n\ncontract Example {\n    function Example(){\n\n    }\n}\n",
+  "sourcePath": "/home/max/zprojects/zap-truffle-template/contracts/Example.sol",
+  "ast": {
+    "absolutePath": "/home/max/zprojects/zap-truffle-template/contracts/Example.sol",
+    "exportedSymbols": {
+      "Example": [
+        252
+      ]
+    },
+    "id": 253,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 246,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "absolutePath": "/home/max/zprojects/zap-truffle-template/contracts/zap/contracts/platform/registry/Registry.sol",
+        "file": "./zap/contracts/platform/registry/Registry.sol",
+        "id": 247,
+        "nodeType": "ImportDirective",
+        "scope": 253,
+        "sourceUnit": 9427,
+        "src": "70:56:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 252,
+        "linearizedBaseContracts": [
+          252
+        ],
+        "name": "Example",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 250,
+              "nodeType": "Block",
+              "src": "169:8:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 251,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "Example",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 248,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "167:2:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 249,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "169:0:1"
+            },
+            "scope": 252,
+            "src": "151:26:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 253,
+        "src": "128:51:1"
+      }
+    ],
+    "src": "0:180:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/max/zprojects/zap-truffle-template/contracts/Example.sol",
+    "exportedSymbols": {
+      "Example": [
+        252
+      ]
+    },
+    "id": 253,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 246,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "absolutePath": "/home/max/zprojects/zap-truffle-template/contracts/zap/contracts/platform/registry/Registry.sol",
+        "file": "./zap/contracts/platform/registry/Registry.sol",
+        "id": 247,
+        "nodeType": "ImportDirective",
+        "scope": 253,
+        "sourceUnit": 9427,
+        "src": "70:56:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 252,
+        "linearizedBaseContracts": [
+          252
+        ],
+        "name": "Example",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 250,
+              "nodeType": "Block",
+              "src": "169:8:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 251,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "Example",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 248,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "167:2:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 249,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "169:0:1"
+            },
+            "scope": 252,
+            "src": "151:26:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 253,
+        "src": "128:51:1"
+      }
+    ],
+    "src": "0:180:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-11-19T21:17:25.656Z"
+}

@@ -1,6 +1,6 @@
 [submodule "zap-ethereum-api"]
 	path = zap-ethereum-api
-	url = git@github.com:zapproject/zap-ethereum-api.git
+	url = https://github.com/zapproject/zap-ethereum-api.git
 [submodule "contracts/zap"]
 	path = contracts/zap
-	url = git@github.com:zapproject/zap-ethereum-api.git
+	url = https://github.com/zapproject/zap-ethereum-api.git
