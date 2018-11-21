@@ -142,7 +142,6 @@ contract("Template",async (accounts)=>{
                 }
         }
 
-        dispatchEvents.stopWatching();
         userEvents.stopWatching();
         incomingEvents.stopWatching();
     });
