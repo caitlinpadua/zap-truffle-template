@@ -3,10 +3,10 @@ pragma solidity ^0.4.0;
 import "./zap/contracts/platform/registry/Registry.sol";
 import "./ZapInterface.sol";
 contract ExampleOracle  {
-	event RecievedQuery(string query, bytes32 endpoint, bytes32[] params);
+    event RecievedQuery(string query, bytes32 endpoint, bytes32[] params);
 
     
-	ZapInterface dispatch;
+    ZapInterface dispatch;
     ZapInterface registry;
 
     address dispatchAddress;
@@ -25,21 +25,21 @@ contract ExampleOracle  {
         bytes32 title = "TestOracle";
 
         registry.initiateProvider(12345, title);
-        registry.initiateProviderCurve(spec1, curve, address(0));
+        registry.initiateProviderCurve(spec1, curve1, address(0));
     }
 
     // middleware function for handling queries
-	function receive(uint256 id, string userQuery, bytes32 endpoint, bytes32[] endpointParams, bool onchainSubscriber) external {
+    function receive(uint256 id, string userQuery, bytes32 endpoint, bytes32[] endpointParams, bool onchainSubscriber) external {
         emit RecievedQuery(userQuery, endpoint, endpointParams);
         endpoint1(id);
-	}
-	function endpoint1(uint256 id){
-		// dispatch.respond1(id, "String1");
-		// dispatch.respond2(id, "String1","String2");
-		// dispatch.respond3(id, "String1","String2","String3");
-		// dispatch.respond4(id, "String1","String2","String3","String4");
+    }
+    function endpoint1(uint256 id){
+        dispatch.respond1(id, "Onchain Answer");
+        // dispatch.respond2(id, "String1","String2");
+        // dispatch.respond3(id, "String1","String2","String3");
+        // dispatch.respond4(id, "String1","String2","String3","String4");
 
-	}
+    }
 
     
 
@@ -49,20 +49,20 @@ contract ExampleOracle  {
 contract ExampleUser{
 
     
-	ZapInterface dispatch;
+    ZapInterface dispatch;
     
 
     address dispatchAddress;
-    
+    event Results(string response1, string response2, string response3, string response4);
 
-	constructor(address _zapCoord) public {
-		
+    constructor(address _zapCoord) public {
+        
         dispatchAddress = ZapInterface(_zapCoord).getContract("DISPATCH");
         dispatch = ZapInterface(dispatchAddress);
 
         
         
-	}
+    }
 
     // Choose the type of callback/data you expect
     function callback(uint256 id, bytes32[] response) external {
@@ -73,22 +73,22 @@ contract ExampleUser{
     }
 
     function callback(uint256 id, string response1) external {
-    	
+        emit Results(response1, "NOTAVAILABLE", "NOTAVAILABLE", "NOTAVAILABLE");
     }
     
     function callback(uint256 id, string response1, string response2) external {
-        
+        emit Results(response1, response2, "NOTAVAILABLE", "NOTAVAILABLE");
     }
     function callback(uint256 id, string response1, string response2, string response3) external {
-    	
+        emit Results(response1, response2, response3, "NOTAVAILABLE");
     }
     
     function callback(uint256 id, string response1, string response2, string response3, string response4) external {
-        
+        emit Results(response1, response2, response3, response4);
     }
 
     function testQuery(address oracleAddr, string query, bytes32 specifier, bytes32[] params) external returns (uint256) {
-    	uint256 id = dispatch.query(oracleAddr, query, specifier, params);
+        uint256 id = dispatch.query(oracleAddr, query, specifier, params);
     }
 
 
