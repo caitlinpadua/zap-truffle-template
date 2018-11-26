@@ -6,6 +6,6 @@ io.on('connection', function (socket) {
     });
     setInterval(function () {
         socket.emit('streamdata', Math.random());
-        console.log('message sent to the clients');
+        // console.log('message sent to the clients');
     }, 3000);
 });
