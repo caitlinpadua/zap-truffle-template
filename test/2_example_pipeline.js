@@ -20,9 +20,15 @@ const Oracle = artifacts.require("ExampleOracle");
 const nullAddr = "0x0000000000000000000000000000000000000000";
 
 var io = require('socket.io-client');
-var socket = io.connect("http://localhost:3000/", {
-    reconnection: true
-});
+
+var socketURL = 'http://0.0.0.0:3000';
+
+var options ={
+  reconnection: true,
+  transports: ['websocket'],
+  'force new connection': true
+};
+
 
 
 function isEventReceived(logs, eventName) {
@@ -38,6 +44,7 @@ function isEventReceived(logs, eventName) {
 
 
 contract("Template",async (accounts)=>{
+  
   let zapdb,zapcoor,token,registry,cost,bondage,dispatch;
   const owner = accounts[0];
   const subscriber = accounts[1];
@@ -170,7 +177,16 @@ contract("Template",async (accounts)=>{
     });
     it("3 - Should subscribe to an offchain data channel using Arbiter as a Subscriber", async function() {
         
-        
+        var socket = io.connect(socketURL, options);
+        socket.on('connect', function () {
+          console.log('connected to localhost:3000');
+          socket.emit('serverEvent', "test");
+          socket.on('streamdata', function (data) {
+              data.should.equal(data)
+              console.log('message from the server:', data);
+              socket.emit('serverEvent', "thanks server! for sending '" + data + "'");
+          });
+        });
         await registry.initiateProviderCurve(
             "ExampleSubscription",// Endpoint  Name
             [2,1,1,1000], // Bonding Curve:2x+2 from 0-1000
@@ -183,22 +199,16 @@ contract("Template",async (accounts)=>{
         await token.approve(bondage.address, approveTokens, {from: subscriber});
         await bondage.bond(offchainOracle, specifier, 1000, {from: subscriber});
         await arbiter.initiateSubscription(offchainOracle, specifier, params, publicKey, 10, {from: subscriber});
-        socket.on('connect', function () {
-          console.log('connected to localhost:3000');
-          socket.on('clientEvent', function (data) {
-              console.log('message from the server:', data);
-              socket.emit('serverEvent', "thanks server! for sending '" + data + "'");
-          });
-        });
-
         let arbiterlogs = await purchaseEvents.get()
-        console.log(arbiterlogs)
-        mine();
-        mine();
-        mine();
-        mine();
-        mine();
-        mine();
+        await expect(isEventReceived(arbiterlogs, "DataPurchase")).to.be.equal(true);
+        let res = await arbiter.getSubscription.call(offchainOracle, subscriber, specifier);
+        await expect(parseInt(res[0].valueOf())).to.be.equal(10);
+
+        await arbiter.endSubscriptionProvider(subscriber, specifier, {from: offchainOracle});
+
+        res = await arbiter.getSubscription.call(offchainOracle, subscriber, specifier);
+        await expect(parseInt(res[0].valueOf())).to.be.equal(0);
+
        
     });
     
