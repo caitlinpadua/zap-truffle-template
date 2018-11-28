@@ -1,6 +1,9 @@
 var io = require('socket.io').listen(3000);
 io.on('connection', function (socket) {
     console.log('connected:', socket.client.id);
+    socket.on('serverEvent', function (data) {
+        console.log('new message from client:', data);
+    });
     socket.on('DataPurchased', function (data) {
         console.log('new message from client:', data);
     });

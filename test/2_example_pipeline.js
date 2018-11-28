@@ -202,8 +202,9 @@ contract("Template",async (accounts)=>{
         let arbiterlogs = await purchaseEvents.get()
         await expect(isEventReceived(arbiterlogs, "DataPurchase")).to.be.equal(true);
         let res = await arbiter.getSubscription.call(offchainOracle, subscriber, specifier);
-        await expect(parseInt(res[0].valueOf())).to.be.equal(10);
+        
 
+        await expect(parseInt(res[0].valueOf())).to.be.equal(10);
         await arbiter.endSubscriptionProvider(subscriber, specifier, {from: offchainOracle});
 
         res = await arbiter.getSubscription.call(offchainOracle, subscriber, specifier);
